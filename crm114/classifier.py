@@ -1,6 +1,7 @@
 import os
 import string
 
+
 CRM_BINARY = 'crm'
 
 CLASSIFICATION_TYPE = '<osb unique microgroom>'
@@ -23,11 +24,11 @@ class Classifier(object):
         self.create_files()
 
     # learn the classifier what category some new text is in
-    def learn(self, category, text):
+    def learn(self, category, text, classification_type = CLASSIFICATION_TYPE):
         """ Feed the classifier some new text and a known classification for
         it, in order to improve subsequent categorizations. """
 
-        command = CRM_BINARY + (LEARN_CMD % (CLASSIFICATION_TYPE,
+        command = CRM_BINARY + (LEARN_CMD % (classification_type,
                                              os.path.join(self.path, category +
                                                           CLASSIFICATION_EXT)))
 
@@ -35,14 +36,14 @@ class Classifier(object):
         pipe.write(text)
         pipe.close()
 
-    def classify(self, text):
+    def classify(self, text, classification_type = CLASSIFICATION_TYPE):
         """ Instructs the classifier to categorize the text, and return the
         name of the category that best matches the text. """
 
         # need to escape path separator for the regex matching
         path = string.replace(self.path, os.sep, '\\%s' % os.sep)
 
-        command = CRM_BINARY + (CLASSIFY_CMD % (CLASSIFICATION_TYPE,
+        command = CRM_BINARY + (CLASSIFY_CMD % (classification_type,
                                                 self.file_list_string(),
                                                 path,
                                                 CLASSIFICATION_EXT))
