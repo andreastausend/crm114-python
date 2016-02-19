@@ -1,7 +1,6 @@
 import os
 import string
 
-
 CRM_BINARY = 'crm'
 
 CLASSIFICATION_TYPE = '<osb unique microgroom>'
