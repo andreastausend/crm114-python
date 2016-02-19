@@ -84,6 +84,13 @@ text.
     c.learn('good', 'some good text')
     c.learn('bad', 'some bad text')
 
+If desired the user can choose between the range of classification methods supported
+by crm114, such as `<refute>`, `<nocase>`, `<microgroom>`, `<osb>`, `<osbf>`, `<winnow>`, 
+`<hyperspace>`, `<unigram>` or `<entropy>`. Default is `<osb unique microgroom>`. An example
+usage is
+
+    c.learn('good', 'some good text', '<hyperspace>')
+
 To find out what the classifier thinks about a body of text, call the classify
 method, passing in the text. The result of this method is a pair: the first
 item is a category best matching the text, and the second item is the
